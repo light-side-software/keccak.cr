@@ -1,0 +1,9 @@
+name: keccak.cr
+version: 0.1.0
+
+authors:
+  - Tamás Szekeres <szektam2@gmail.com>
+
+crystal: 0.26.1
+
+license: MIT
