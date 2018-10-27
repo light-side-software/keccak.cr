@@ -1,9 +1,12 @@
-name: keccak.cr
+name: keccak
 version: 0.1.0
 
 authors:
   - Tamás Szekeres <szektam2@gmail.com>
 
 crystal: 0.26.1
+
+description: |
+  Crystal implementation of Keccak (SHA-3)
 
 license: MIT
