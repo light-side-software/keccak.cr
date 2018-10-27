@@ -167,9 +167,18 @@ module Keccak
     keccak64(in_raw, capacity, output_length, suffix, raw_output)
   end
 
-  def hash(input : String, mdlen : Int32, raw_output : Bool = false) : String
-    raise "Unsupported Keccak Hash output size." unless OUTPUT_SIZES.includes? mdlen
+  # Returns [Keccak](https://en.wikipedia.org/wiki/SHA-3) (not the standardized SHA3) of the given string.
+  #
+  # **Parameters**
+  # - *input* - Input string.
+  # - *output_size* - Size of returning hash in bits.
+  # - *raw_output* - if **false** returns hex-encoded string, raw bytes otherwise.
+  #
+  # **Returns**
+  #    `String` - The SHA3 result of the given string.
+  def hash(input : String, output_size : Int32, raw_output : Bool = false) : String
+    raise "Unsupported Keccak Hash output size." unless OUTPUT_SIZES.includes? output_size
 
-    keccak(input, mdlen, mdlen, LFSR, raw_output)
+    keccak(input, mdlen, output_size, LFSR, raw_output)
   end
 end
