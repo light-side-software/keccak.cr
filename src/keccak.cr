@@ -8,6 +8,7 @@ module Keccak
   KECCAK_ROTC = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 2, 14, 27, 41, 56, 8, 25, 43, 62, 18, 39, 61, 20, 44]
   KECCAKF_PILN = [10, 7, 11, 17, 18, 3, 5, 16, 8, 21, 24, 4, 15, 23, 19, 13, 12,2, 20, 14, 22, 9, 6, 1]
   OUTPUT_SIZES = [224, 256, 384, 512]
+  SHAKE_SECURITY_LEVELS = [128, 256]
 
   private def keccakf64(st, rounds)
     keccakf_rndc = StaticArray[
@@ -179,6 +180,12 @@ module Keccak
   def hash(input : String, output_size : Int32, raw_output : Bool = false) : String
     raise "Unsupported Keccak Hash output size." unless OUTPUT_SIZES.includes? output_size
 
-    keccak(input, mdlen, output_size, LFSR, raw_output)
+    keccak(input, output_size, output_size, LFSR, raw_output)
+  end
+
+  def shake(input : String, security_level : Int32, output_size : Int32, raw_output : Bool = false) : String
+    raise "Unsupported Keccak Shake security level." unless SHAKE_SECURITY_LEVELS.includes? security_level
+
+    keccak(input, security_level, output_size, 0x1f, raw_output)
   end
 end

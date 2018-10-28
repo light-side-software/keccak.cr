@@ -58,4 +58,16 @@ describe Keccak do
       Keccak.hash("0123456789" * 20, 512, false).should eq("5e92e6ac6e14d131efa82846d41f4f21565ab0f408a8737ce241a69c666cf0080af00f7045c7fce8e26037137e56e72f812da8db692685a4d0e46fdc56953f4b")
     end
   end
+
+  describe "#shake" do
+    it "should calc shake (128, 256)" do
+      Keccak.shake("", 128, 256).should eq("7f9c2ba4e88f827d616045507605853ed73b8093f6efbc88eb1a6eacfa66ef26")
+      Keccak.shake("The quick brown fox jumps over the lazy dog", 128, 256).should eq("f4202e3c5852f9182a0430fd8144f0a74b95e7417ecae17db0f8cfeed0e3e66e")
+    end
+
+    it "should calc shake (256, 512)" do
+      Keccak.shake("", 256, 512).should eq("46b9dd2b0ba88d13233b3feb743eeb243fcd52ea62b81b82b50c27646ed5762fd75dc4ddd8c0f200cb05019d67b592f6fc821c49479ab48640292eacb3b7c4be")
+      Keccak.shake("The quick brown fox jumps over the lazy dog", 256, 512).should eq("2f671343d9b2e1604dc9dcf0753e5fe15c7c64a0d283cbbf722d411a0e36f6ca1d01d1369a23539cd80f7c054b6e5daf9c962cad5b8ed5bd11998b40d5734442")
+    end
+  end
 end
