@@ -183,6 +183,19 @@ module Keccak
     keccak(input, output_size, output_size, LFSR, raw_output)
   end
 
+  # Returns [Keccak](https://en.wikipedia.org/wiki/SHA-3) (not the standardized SHA3) of the given string.
+  #
+  # **Parameters**
+  # - *input* - Input bytes.
+  # - *output_size* - Size of returning hash in bits.
+  #
+  # **Returns**
+  #    `Bytes` - The SHA3 result of the given string.
+  def hash(input : Bytes, output_size : Int32) : Bytes
+    h = hash(String.new(input), output_size, raw_output: true)
+    Bytes.new(h.bytes.to_unsafe, h.bytesize)
+  end
+
   def shake(input : String, security_level : Int32, output_size : Int32, raw_output : Bool = false) : String
     raise "Unsupported Keccak Shake security level." unless SHAKE_SECURITY_LEVELS.includes? security_level
 
