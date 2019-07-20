@@ -1,5 +1,7 @@
 # keccak.cr
 
+[![Build Status](https://travis-ci.org/light-side-software/keccak.cr.svg?branch=master)](https://travis-ci.org/light-side-software/keccak.cr)
+
 Crystal implementation of Keccak (SHA-3).
 
 Based on [PHP](https://github.com/kornrunner/php-keccak) implementation by [kornrunner](https://github.com/kornrunner).
