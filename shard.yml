@@ -1,10 +1,10 @@
 name: keccak
-version: 0.1.1
+version: 1.0.0
 
 authors:
   - Tamás Szekeres <szektam2@gmail.com>
 
-crystal: 0.29.0
+crystal: 1.0.0
 
 description: |
   Crystal implementation of Keccak (SHA-3)

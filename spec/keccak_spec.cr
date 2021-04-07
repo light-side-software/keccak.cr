@@ -24,8 +24,8 @@ describe Keccak do
     end
 
     it "should calc raw hash (224)" do
-      Keccak.hash("Keccak", 224, true).should eq("\u001D\xF5\xB5}y\xD5\u0012\xC3\xCCk\xA5\xAA\u0003\x8F7oQ\xD0b\u0011\x96\xC2\u0001|7\x89\u001F>i")
-      Keccak.hash("Crystal Language", 224, true).should eq(";\xEB\xB45YG\xC7opB\xB2\xE9\xE5\xF8\u001F\u001CmqΦ}\xF98ar\eu\x9AtV")
+      Keccak.hash("Keccak", 224, true).should eq("\u001D\xF5\xB5}y\xD5\u0012\xC3\xCCk\xA5\xAA\u0003\x8F7oQ\xD0b\u0011\x96\xC2\u0001|7\x89\u001F>")
+      Keccak.hash("Crystal Language", 224, true).should eq(";\xEB\xB45YG\xC7opB\xB2\xE9\xE5\xF8\u001F\u001CmqΦ}\xF98ar\eu\x9At")
     end
 
     it "should calc raw hash (256)" do

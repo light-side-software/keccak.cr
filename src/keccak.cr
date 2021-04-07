@@ -1,5 +1,5 @@
 module Keccak
-  VERSION = "0.1.0"
+  VERSION = "1.0.0"
 
   extend self
 
@@ -70,7 +70,7 @@ module Keccak
         t = bc[0]
       end
 
-      #  Chi
+      # Chi
       (0...25).step(5).each do |j|
         (0...5).each do |i|
           bc[i] = st[j + i]
@@ -98,15 +98,15 @@ module Keccak
 
     in_len = in_raw.size
 
-    rsiz = 200 - 2 * capacity
+    rsiz = (200 - 2 * capacity).to_i32
     rsizw = rsiz / 8
 
     st = StaticArray(StaticArray(Int64, 2), 25).new { StaticArray[0_i64, 0_i64] }
 
-    in_t = 0
+    in_t = 0_i32
     while in_len >= rsiz
       (0...rsizw).each do |i|
-        s = i * 8 + in_t
+        s = (i * 8 + in_t).to_i32
         t = [
           in_raw[s + 0].ord.to_i64 | in_raw[s + 1].ord.to_i64 << 8 | in_raw[s + 2].ord.to_i64 << 16 | in_raw[s + 3].ord.to_i64 << 24,
           in_raw[s + 4].ord.to_i64 | in_raw[s + 5].ord.to_i64 << 8 | in_raw[s + 6].ord.to_i64 << 16 | in_raw[s + 7].ord.to_i64 << 24,
@@ -146,7 +146,7 @@ module Keccak
 
     st = keccakf64(st, KECCAK_ROUNDS)
 
-    output_chars = output_length / (raw_output ? 8 : 4)
+    output_chars = (output_length / (raw_output ? 8 : 4)).to_i32
     String::Builder.build(output_chars) do |builder|
       (0...25).each do |i|
         if builder.bytesize < output_chars
